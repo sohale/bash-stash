@@ -1,3 +1,5 @@
+#!/bin/bash
+set -exu
 
 # Helpers for the following setup:
 # Working from a local machine (e.g. MacOS) via ssh to a remote server (e.g. Ubuntu 22)
@@ -10,4 +12,4 @@ function clean_all_vscode_servers {
 
    # Step 1: See evidence
    ps aux |grep "vscode-server"
-ß}
+}
