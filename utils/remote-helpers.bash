@@ -1,7 +1,7 @@
 #!/bin/bash
 set -exu
 
-# Helpers for the following setup:
+# Helpers for the following setup: (remote development environment)
 # Working from a local machine (e.g. MacOS) via ssh to a remote server (e.g. Ubuntu 22)
 # Using vscode remote
 
@@ -35,3 +35,22 @@ export -f clean_all_vscode_servers
 
 # example
 clean_all_vscode_servers
+
+
+function cleanup_sshagents {
+
+   # Get all ssh-agent process IDs "except for" the most recently started one
+   ssh_agents=$(pgrep -f ssh-agent | sort | head -n -1)
+
+   # Kill all other ssh-agent processes
+   for pid in $ssh_agents; do
+      echo "Killing ssh-agent with PID $pid"
+      kill $pid
+   done
+
+   # Optional: To list remaining ssh-agent process
+   echo "Remaining ssh-agent processes:"
+   pgrep -fl ssh-agent
+
+}
+cleanup_sshagents
