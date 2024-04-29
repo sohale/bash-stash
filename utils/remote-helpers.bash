@@ -52,5 +52,8 @@ function cleanup_sshagents {
    echo "Remaining ssh-agent processes:"
    pgrep -fl ssh-agent
 
+   echo "If you killed too many ssh-agents: To revive the ssh connection to github:"
+   echo 'eval "$(ssh-agent -s)"'
+   echo 'ssh-add ~/.ssh/github_rsa'
 }
 cleanup_sshagents
